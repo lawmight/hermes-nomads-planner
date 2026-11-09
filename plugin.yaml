@@ -1,0 +1,32 @@
+name: nomads-planner
+version: 0.1.0
+description: "Nomads.com for Hermes: read your trips and favorite cities, look up city and country facts and upcoming meetups, and build a next-stay brief that joins them. Read-only. Calls the public nomads.com API."
+author: Tom Coustols
+license: MIT
+homepage: https://nomads.com/api
+tags: [travel, nomads, remote-work, cities, meetups]
+manifest_version: 2
+api_version: 1
+requires_hermes: ">=0.23.0"
+provides_tools:
+  - nomads_search_cities
+  - nomads_get_city
+  - nomads_get_country
+  - nomads_list_meetups
+  - nomads_get_trips
+  - nomads_get_favorites
+  - nomads_next_stay_brief
+provides_hooks: []
+config_schema:
+  username:
+    type: str
+    default: ""
+    label: "Nomads.com username"
+    description: "Your username from nomads.com/<username>. Needed for trips and favorites. Leave empty if your key is saved as username:key."
+    required: false
+  api_key:
+    type: secret
+    env: NOMADS_API_KEY
+    label: "Nomads.com personal key"
+    description: "Personal key from https://nomads.com/settings. Optional: city, country and meetup tools work without it."
+    required: false
